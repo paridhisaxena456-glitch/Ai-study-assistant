@@ -1,0 +1,871 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>AI Study Assistant</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<div class="app">
+
+    <!-- =========================
+         SIDEBAR
+    ========================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-icon">
+                🎓
+            </div>
+
+            <div>
+                <h2>StudyAI</h2>
+                <p>Smart Learning</p>
+            </div>
+
+        </div>
+
+
+        <nav>
+
+            <!-- Dashboard -->
+
+            <button class="nav-btn active"
+                    onclick="showSection('dashboard')">
+                🏠 Dashboard
+            </button>
+
+
+            <!-- AI Chat -->
+
+            <button class="nav-btn"
+                    onclick="showSection('chat')">
+                🤖 AI Chat
+            </button>
+
+
+            <!-- Notes -->
+
+            <button class="nav-btn"
+                    onclick="showSection('notes')">
+                📚 Notes Generator
+            </button>
+
+
+            <!-- Quiz -->
+
+            <button class="nav-btn"
+                    onclick="showSection('quiz')">
+                📝 Quiz
+            </button>
+
+
+            <!-- Planner -->
+
+            <button class="nav-btn"
+                    onclick="showSection('planner')">
+                📅 Study Planner
+            </button>
+
+
+            <!-- Progress -->
+
+            <button class="nav-btn"
+                    onclick="showSection('progress')">
+                📊 Progress
+            </button>
+
+
+            <!-- Settings -->
+
+            <button class="nav-btn"
+                    onclick="showSection('settings')">
+                ⚙️ Settings
+            </button>
+
+        </nav>
+
+
+        <!-- SIDEBAR BOTTOM -->
+
+        <div class="sidebar-bottom">
+
+            <button class="nav-btn"
+                    onclick="toggleTheme()">
+                🌙 Dark Mode
+            </button>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =========================
+         MAIN CONTENT
+    ========================== -->
+
+    <main class="main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div>
+
+                <h1>
+                    AI Study Assistant
+                </h1>
+
+                <p>
+                    Your personal AI learning companion
+                </p>
+
+            </div>
+
+
+            <div class="student">
+
+                👩‍🎓
+                <span id="studentName">
+                    Student
+                </span>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =========================
+             DASHBOARD
+        ========================== -->
+
+        <section id="dashboard"
+                 class="section active">
+
+            <!-- HERO -->
+
+            <div class="hero">
+
+                <div>
+
+                    <span class="small-title">
+                        ✨ WELCOME BACK
+                    </span>
+
+                    <h2>
+                        Learn smarter,<br>
+                        study better.
+                    </h2>
+
+                    <p>
+                        Your AI-powered study assistant
+                        is ready to help you.
+                    </p>
+
+                    <button class="primary"
+                            onclick="showSection('chat')">
+
+                        Start Learning →
+
+                    </button>
+
+                </div>
+
+
+                <div class="hero-icon">
+                    🧠
+                </div>
+
+            </div>
+
+
+
+            <!-- STAT CARDS -->
+
+            <div class="stats">
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon purple">
+                        📚
+                    </div>
+
+                    <p>
+                        Subjects
+                    </p>
+
+                    <h3>
+                        5
+                    </h3>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon blue">
+                        📝
+                    </div>
+
+                    <p>
+                        Quizzes
+                    </p>
+
+                    <h3 id="quizCount">
+                        0
+                    </h3>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon orange">
+                        🔥
+                    </div>
+
+                    <p>
+                        Study Streak
+                    </p>
+
+                    <h3>
+                        7 Days
+                    </h3>
+
+                </div>
+
+
+
+                <div class="stat-card">
+
+                    <div class="stat-icon green">
+                        🎯
+                    </div>
+
+                    <p>
+                        Progress
+                    </p>
+
+                    <h3>
+                        72%
+                    </h3>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- QUICK ACTIONS -->
+
+            <div class="content-grid">
+
+
+                <div class="panel">
+
+                    <h2>
+                        Quick Actions
+                    </h2>
+
+
+                    <button class="action"
+                            onclick="showSection('chat')">
+
+                        🤖
+
+                        <span>
+
+                            <strong>
+                                Ask AI
+                            </strong>
+
+                            <small>
+                                Ask any study question
+                            </small>
+
+                        </span>
+
+                    </button>
+
+
+
+                    <button class="action"
+                            onclick="showSection('notes')">
+
+                        📚
+
+                        <span>
+
+                            <strong>
+                                Generate Notes
+                            </strong>
+
+                            <small>
+                                Create notes with AI
+                            </small>
+
+                        </span>
+
+                    </button>
+
+
+
+                    <button class="action"
+                            onclick="showSection('quiz')">
+
+                        📝
+
+                        <span>
+
+                            <strong>
+                                Take Quiz
+                            </strong>
+
+                            <small>
+                                Test your knowledge
+                            </small>
+
+                        </span>
+
+                    </button>
+
+
+
+                    <button class="action"
+                            onclick="showSection('planner')">
+
+                        📅
+
+                        <span>
+
+                            <strong>
+                                Study Planner
+                            </strong>
+
+                            <small>
+                                Create your study plan
+                            </small>
+
+                        </span>
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- TODAY'S PROGRESS -->
+
+                <div class="panel">
+
+                    <h2>
+                        Today's Progress
+                    </h2>
+
+
+                    <div class="progress-circle">
+
+                        <span>
+                            72%
+                        </span>
+
+                    </div>
+
+
+                    <p class="center-text">
+
+                        Keep going!
+                        You're doing great. 🔥
+
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             AI CHAT
+        ========================== -->
+
+        <section id="chat"
+                 class="section">
+
+            <div class="panel chat-panel">
+
+                <h2>
+                    🤖 AI Study Chat
+                </h2>
+
+                <p class="section-subtitle">
+                    Ask questions and learn interactively.
+                </p>
+
+
+                <div id="chatBox"
+                     class="chat-box">
+
+                    <div class="message bot-message">
+
+                        👋 Hi! I'm your AI Study Assistant.
+
+                        <br><br>
+
+                        Ask me anything about your studies.
+
+                    </div>
+
+                </div>
+
+
+                <div class="input-area">
+
+                    <input
+                        type="text"
+                        id="message"
+                        placeholder="Ask your study question..."
+                        autocomplete="off"
+                    >
+
+
+                    <button onclick="sendMessage()">
+                        Send
+                    </button>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             NOTES GENERATOR
+        ========================== -->
+
+        <section id="notes"
+                 class="section">
+
+            <div class="panel">
+
+                <h2>
+                    📚 Notes Generator
+                </h2>
+
+                <p class="section-subtitle">
+                    Enter a topic and generate study notes.
+                </p>
+
+
+                <input
+                    type="text"
+                    id="noteTopic"
+                    class="big-input"
+                    placeholder="Example: Artificial Intelligence"
+                >
+
+
+                <button class="primary"
+                        onclick="generateNotes()">
+
+                    Generate Notes
+
+                </button>
+
+
+                <div id="notesResult"
+                     class="result">
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             QUIZ
+        ========================== -->
+
+        <section id="quiz"
+                 class="section">
+
+            <div class="panel">
+
+                <h2>
+                    📝 AI Quiz Generator
+                </h2>
+
+                <p class="section-subtitle">
+                    Generate questions and test yourself.
+                </p>
+
+
+                <input
+                    type="text"
+                    id="quizTopic"
+                    class="big-input"
+                    placeholder="Example: Python"
+                >
+
+
+                <button class="primary"
+                        onclick="generateQuiz()">
+
+                    Generate Quiz
+
+                </button>
+
+
+                <div id="quizResult">
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             STUDY PLANNER
+        ========================== -->
+
+        <section id="planner"
+                 class="section">
+
+            <div class="panel">
+
+                <h2>
+                    📅 Study Planner
+                </h2>
+
+                <p class="section-subtitle">
+                    Create a personalized study schedule.
+                </p>
+
+
+                <input
+                    type="text"
+                    id="plannerSubject"
+                    class="big-input"
+                    placeholder="Enter subject"
+                >
+
+
+                <input
+                    type="number"
+                    id="plannerDays"
+                    class="big-input"
+                    placeholder="Number of days"
+                    min="1"
+                    max="30"
+                >
+
+
+                <button class="primary"
+                        onclick="createPlanner()">
+
+                    Create Study Plan
+
+                </button>
+
+
+                <div id="plannerResult">
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             PROGRESS
+        ========================== -->
+
+        <section id="progress"
+                 class="section">
+
+            <div class="panel">
+
+                <h2>
+                    📊 Your Progress
+                </h2>
+
+                <p class="section-subtitle">
+                    Track your learning progress.
+                </p>
+
+
+
+                <!-- Python -->
+
+                <div class="subject">
+
+                    <div>
+
+                        <span>
+                            Python
+                        </span>
+
+                        <span>
+                            80%
+                        </span>
+
+                    </div>
+
+
+                    <div class="bar">
+
+                        <div style="width:80%"></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Web Development -->
+
+                <div class="subject">
+
+                    <div>
+
+                        <span>
+                            Web Development
+                        </span>
+
+                        <span>
+                            70%
+                        </span>
+
+                    </div>
+
+
+                    <div class="bar">
+
+                        <div style="width:70%"></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- AI -->
+
+                <div class="subject">
+
+                    <div>
+
+                        <span>
+                            Artificial Intelligence
+                        </span>
+
+                        <span>
+                            55%
+                        </span>
+
+                    </div>
+
+
+                    <div class="bar">
+
+                        <div style="width:55%"></div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Mathematics -->
+
+                <div class="subject">
+
+                    <div>
+
+                        <span>
+                            Mathematics
+                        </span>
+
+                        <span>
+                            65%
+                        </span>
+
+                    </div>
+
+
+                    <div class="bar">
+
+                        <div style="width:65%"></div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- =========================
+             SETTINGS
+        ========================== -->
+
+        <section id="settings"
+                 class="section">
+
+            <div class="panel">
+
+                <h2>
+                    ⚙️ Settings
+                </h2>
+
+                <p class="section-subtitle">
+                    Manage your StudyAI account and preferences.
+                </p>
+
+
+
+                <!-- PROFILE -->
+
+                <div class="settings-item">
+
+                    <div>
+
+                        <strong>
+                            👤 Profile
+                        </strong>
+
+                        <p>
+                            Manage your account information.
+                        </p>
+
+                    </div>
+
+
+                    <button class="settings-btn"
+                            onclick="showProfile()">
+
+                        View Profile
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- APPEARANCE -->
+
+                <div class="settings-item">
+
+                    <div>
+
+                        <strong>
+                            🌙 Appearance
+                        </strong>
+
+                        <p>
+                            Switch between light and dark mode.
+                        </p>
+
+                    </div>
+
+
+                    <button class="settings-btn"
+                            onclick="toggleTheme()">
+
+                        Toggle Theme
+
+                    </button>
+
+                </div>
+
+
+
+                <!-- LOGOUT -->
+
+                <div class="settings-item">
+
+                    <div>
+
+                        <strong>
+                            🔐 Account
+                        </strong>
+
+                        <p>
+                            Logout from your StudyAI account.
+                        </p>
+
+                    </div>
+
+
+                    <a href="/logout"
+                       class="logout-btn">
+
+                        Logout
+
+                    </a>
+
+                </div>
+
+
+
+                <!-- PROFILE INFORMATION -->
+
+                <div id="profileBox"
+                     class="profile-box">
+
+                    <h3>
+                        👤 Your Profile
+                    </h3>
+
+                    <p>
+                        Loading profile...
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+    </main>
+
+</div>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+
+</body>
+
+</html>
